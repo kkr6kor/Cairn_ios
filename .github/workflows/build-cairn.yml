@@ -11,6 +11,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install XcodeGen
+        # This new environment variable fixes the Homebrew trust issue
+        env:
+          HOMEBREW_NO_INSTALL_FROM_API: 1
         run: brew install xcodegen
 
       - name: Generate Project with XcodeGen
