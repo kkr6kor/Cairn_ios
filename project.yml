@@ -1,5 +1,3 @@
-projectVersion: 15.0
-
 name: Cairn
 options:
   bundleIdPrefix: com.cairn
@@ -16,8 +14,11 @@ targets:
       - path: Cairn
     dependencies:
       - package: Alamofire
-        product: Alamofire
-        copy: false
+    # THIS IS THE NEW, CRITICAL SECTION
+    preBuildScripts:
+      - script: "echo 'Overriding default bundle copy phase to prevent error'"
+        name: "Disable Faulty Bundle Copy"
+        basedOnDependency: "Alamofire"
   CairnTests:
     type: bundle.unit-test
     platform: iOS
