@@ -5,13 +5,19 @@ on:
 
 jobs:
   build:
+    # GOING BACK to macos-14
     runs-on: macos-14
     steps:
+      # NEW STEP to force a compatible Xcode version
+      - name: Select Xcode version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '15.0.1'
+
       - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Install XcodeGen
-        # This new environment variable fixes the Homebrew trust issue
         env:
           HOMEBREW_NO_INSTALL_FROM_API: 1
         run: brew install xcodegen
