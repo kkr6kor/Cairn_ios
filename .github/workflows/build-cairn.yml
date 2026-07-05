@@ -5,10 +5,8 @@ on:
 
 jobs:
   build:
-    # GOING BACK to macos-14
     runs-on: macos-14
     steps:
-      # NEW STEP to force a compatible Xcode version
       - name: Select Xcode version
         uses: maxim-lobanov/setup-xcode@v1
         with:
@@ -16,6 +14,14 @@ jobs:
 
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      # NEW STEP: Nuke the SPM cache
+      - name: Clean Swift Package Caches
+        run: rm -rf ~/Library/Caches/org.swift.swiftpm
+
+      # NEW STEP: Nuke the Xcode build cache
+      - name: Clean Xcode Derived Data
+        run: rm -rf ~/Library/Developer/Xcode/DerivedData/*
 
       - name: Install XcodeGen
         env:
