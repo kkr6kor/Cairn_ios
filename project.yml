@@ -1,3 +1,5 @@
+xcodeVersion: 15.0 
+
 name: Cairn
 options:
   bundleIdPrefix: com.cairn
