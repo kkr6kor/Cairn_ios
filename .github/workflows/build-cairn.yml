@@ -7,44 +7,28 @@ jobs:
   build:
     runs-on: macos-14
     steps:
-      - name: Select Xcode version
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: '15.0.1'
-
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # NEW STEP: Nuke the SPM cache
-      - name: Clean Swift Package Caches
-        run: rm -rf ~/Library/Caches/org.swift.swiftpm
+      - name: Select Xcode version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '15.3'
 
-      # NEW STEP: Nuke the Xcode build cache
-      - name: Clean Xcode Derived Data
-        run: rm -rf ~/Library/Developer/Xcode/DerivedData/*
-
-      - name: Install XcodeGen
-        env:
-          HOMEBREW_NO_INSTALL_FROM_API: 1
-        run: brew install xcodegen
-
-      - name: Generate Project with XcodeGen
-        run: xcodegen generate
-
+      # xcodebuild can build directly from a Package.swift file
       - name: Compile Cairn iOS App
         run: |
-          xcodebuild -project Cairn.xcodeproj \
-                     -scheme Cairn \
-                     -configuration Release \
-                     -sdk iphoneos \
-                     clean build \
-                     CODE_SIGNING_ALLOWED=NO \
-                     CONFIGURATION_BUILD_DIR=build
+          xcodebuild build \
+            -scheme Cairn \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath ./DerivedData \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO
 
       - name: Package App into installable .ipa
         run: |
           mkdir -p Payload
-          mv build/Cairn.app Payload/
+          mv ./DerivedData/Build/Products/Debug-iphoneos/Cairn.app Payload/
           zip -r Cairn.ipa Payload/
 
       - name: Upload Finished IPA
