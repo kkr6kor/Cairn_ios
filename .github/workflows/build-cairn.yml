@@ -1,7 +1,7 @@
 name: Build Cairn App for iOS
 
 on:
-  workflow_dispatch: # Enables the manual "Run" button
+  workflow_dispatch:
 
 jobs:
   build:
