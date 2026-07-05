@@ -13,7 +13,7 @@ let package = Package(
         // Existing dependency
         .package(url: "https://github.com/Alamofire/Alamofire", from: "5.8.1"),
         // ADD THIS NEW DEPENDENCY
-        .package(url: "git@github.com:maplibre/maplibre-native-ios.git", from: "6.0.0")
+        .package(url: "https://github.com/maplibre/maplibre-native-ios.git", from: "6.0.0")
     ],
     targets: [
         .target(
