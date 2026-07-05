@@ -15,19 +15,18 @@ jobs:
         with:
           xcode-version: '15.3'
 
-      # xcodebuild can build directly from a Package.swift file
+      # THIS IS THE CORRECTED BUILD COMMAND
       - name: Compile Cairn iOS App
         run: |
           xcodebuild build \
             -scheme Cairn \
             -destination 'generic/platform=iOS' \
-            -derivedDataPath ./DerivedData \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO
+            -derivedDataPath ./DerivedData
 
       - name: Package App into installable .ipa
         run: |
           mkdir -p Payload
+          # The path is now slightly different because we are not using Release config
           mv ./DerivedData/Build/Products/Debug-iphoneos/Cairn.app Payload/
           zip -r Cairn.ipa Payload/
 
