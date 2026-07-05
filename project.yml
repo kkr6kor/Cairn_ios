@@ -1,5 +1,4 @@
-# Note: We are now using projectVersion
-projectVersion: 15.0 
+projectVersion: 15.0
 
 name: Cairn
 options:
@@ -7,7 +6,7 @@ options:
 packages:
   Alamofire:
     url: https://github.com/Alamofire/Alamofire
-    majorVersion: 5
+    from: 5.0.0
 targets:
   Cairn:
     type: application
