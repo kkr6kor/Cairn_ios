@@ -7,18 +7,20 @@ let package = Package(
         .iOS(.v17)
     ],
     products: [
-        .executable(name: "Cairn", targets: ["Cairn"])
+        // An app is built from a library product
+        .library(name: "Cairn", targets: ["Cairn"])
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire", from: "5.8.1")
     ],
     targets: [
-        .executableTarget(
+        // This should be a regular target, not an executable
+        .target(
             name: "Cairn",
             dependencies: [
                 "Alamofire"
             ],
-            path: "Cairn" // Look for source files in the "Cairn" directory
+            path: "Cairn"
         ),
         .testTarget(
             name: "CairnTests",
