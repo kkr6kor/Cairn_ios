@@ -7,18 +7,21 @@ let package = Package(
         .iOS(.v17)
     ],
     products: [
-        // An app is built from a library product
         .library(name: "Cairn", targets: ["Cairn"])
     ],
     dependencies: [
-        .package(url: "https://github.com/Alamofire/Alamofire", from: "5.8.1")
+        // Existing dependency
+        .package(url: "https://github.com/Alamofire/Alamofire", from: "5.8.1"),
+        // ADD THIS NEW DEPENDENCY
+        .package(url: "https://github.com/maplibre/maplibre-native-ios.git", from: "6.0.0")
     ],
     targets: [
-        // This should be a regular target, not an executable
         .target(
             name: "Cairn",
             dependencies: [
-                "Alamofire"
+                "Alamofire",
+                // ADD MAPLIBRE TO THE TARGET
+                .product(name: "MapLibre", package: "maplibre-native-ios")
             ],
             path: "Cairn"
         ),
