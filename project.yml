@@ -16,6 +16,8 @@ targets:
       - path: Cairn
     dependencies:
       - package: Alamofire
+        product: Alamofire
+        copy: false
   CairnTests:
     type: bundle.unit-test
     platform: iOS
@@ -24,12 +26,3 @@ targets:
       - path: CairnTests
     dependencies:
       - target: Cairn
-
-# ADD THIS ENTIRE SCHEME SECTION
-schemes:
-  Cairn:
-    build:
-      targets:
-        Cairn: all
-    run:
-      disableMainThreadChecker: true
