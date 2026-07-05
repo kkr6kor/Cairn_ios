@@ -17,17 +17,14 @@ jobs:
         with:
           xcode-version: '15.3'
 
-      # STEP FROM YOUR FIX #2: De-authenticate Git to allow anonymous clones
-      - name: Unset interfering Git credentials
+      # YOUR EXCELLENT FIX: Force Git to use the GITHUB_TOKEN for authentication
+      - name: Force Git to use GitHub Token
         run: |
-          git config --global --unset-all credential.helper || true
-          git config --global --unset-all http.https://github.com/.extraheader || true
+          git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
 
-      # STEP FROM YOUR FIX #3: Resolve packages as a separate step
       - name: Resolve Swift Package Dependencies
         run: xcodebuild -resolvePackageDependencies -scheme Cairn -derivedDataPath ./DerivedData
 
-      # The original compile step, which now runs after dependencies are confirmed
       - name: Compile Cairn iOS App
         run: |
           xcodebuild build \
