@@ -7,13 +7,13 @@ jobs:
   build:
     runs-on: macos-14
     steps:
+      # MODIFIED THIS STEP
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          lfs: true # <-- THIS IS THE CRITICAL CHANGE
 
-      - name: Install Git LFS
-        run: |
-          brew install git-lfs
-          git lfs install
+      # WE HAVE DELETED THE MANUAL "Install Git LFS" STEP
 
       - name: Select Xcode version
         uses: maxim-lobanov/setup-xcode@v1
