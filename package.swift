@@ -10,17 +10,16 @@ let package = Package(
         .library(name: "Cairn", targets: ["Cairn"])
     ],
     dependencies: [
-        // Existing dependency
         .package(url: "https://github.com/Alamofire/Alamofire", from: "5.8.1"),
-        // ADD THIS NEW DEPENDENCY
-        .package(url: "https://github.com/maplibre/maplibre-gl-native-distribution.git", from: "6.0.0")
+        // USE THE CORRECT, MODERN MAPLIBRE DISTRIBUTION
+        .package(url: "https://github.com/maplibre/maplibre-gl-native-distribution.git", from: "6.2.7")
     ],
     targets: [
         .target(
             name: "Cairn",
             dependencies: [
                 "Alamofire",
-                // ADD MAPLIBRE TO THE TARGET
+                // Make sure the product name matches the new package
                 .product(name: "MapLibre", package: "maplibre-gl-native-distribution")
             ],
             path: "Cairn"
