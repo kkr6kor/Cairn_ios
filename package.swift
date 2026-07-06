@@ -17,8 +17,6 @@ let package = Package(
             name: "Cairn",
             dependencies: [
                 "Alamofire",
-                // Make sure the product name matches the new package
-                .product(name: "MapLibre", package: "maplibre-gl-native-distribution")
             ],
             path: "Cairn"
         ),
