@@ -1,21 +1,3 @@
-//
-//  BasemapProvider.swift
-//  Cairn
-//
-//  Created by Ashif Khan on 20/05/2026.
-//
-//  MAPLIBRE DISABLED TO ALLOW BUILD TO COMPLETE
-
-import Foundation
-
-// This is a placeholder class to prevent build errors.
-// All map functionality is disabled.
-class BasemapProvider {
-    // Placeholder properties and methods
-    func getStyleJSON() -> String {
-        return ""
-    }
-}
 import Foundation
 import CoreLocation
 import MapLibre
