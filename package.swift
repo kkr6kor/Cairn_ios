@@ -11,8 +11,6 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire", from: "5.8.1"),
-        // USE THE CORRECT, MODERN MAPLIBRE DISTRIBUTION
-        .package(url: "https://github.com/maplibre/maplibre-gl-native-distribution.git", from: "6.2.7")
     ],
     targets: [
         .target(
